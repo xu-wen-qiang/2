@@ -1,0 +1,67 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<title>callio</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../resources/css/style.css">
+	</head>
+	<style type="text/css">
+		iframe {
+			width: 102.2%;
+			height: 85vh;
+		}
+	</style>
+	<body>
+		<!-- 头部 -->
+		<div class="container">
+			<div class="row justify-content-between">
+					<a href="index.html">
+						<img src="../resources/img/logo.png" style="width: 4.6875rem;">
+					</a>
+				<div class="navbar navbar-expand-lg navbar-light">
+					<a href="/sys/login" target="iframe" class="nav-link" color="black">登录</a>
+					<span>|</span>
+					<a href="/sys/register" target="iframe" class="nav-link" color="black">注册</a>
+				</div>
+			</div>
+			<div class="row m-3">
+				<div class="col-12 col-md-6 offset-md-3 text-center" style="margin: auto;">
+					<form>
+						<div class="input-group mb-2">
+							<input type="text" class="form-control" id="search" placeholder="搜索商品" required="required" style="border: 1px solid red;">
+							<div class="input-group-prepend">
+								<button type="submit" class=" btn btn-danger" id="btn_search">搜索</button></div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- 列表展示 -->
+		<div class="main">
+			<iframe src="/sys/main" name="iframe" id="iframe" frameborder="0" seamless></iframe>
+		</div>
+
+		<footer class="container-fruild text-center bg-danger">
+			<a href="#">服务条款</a><span class="text-danger">|</span>
+			<a href="#">隐私策略</a><span class="text-danger">|</span>
+			<a href="#">广告服务</a><span class="text-danger">|</span>
+			<a href="#">客服中心</a>
+			<p class="text-white">Copyright&copy;&nbsp;&nbsp;Sun☀</p>
+		</footer>
+		<script type="text/javascript" src="../resources/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../resources/js/popper.min.js"></script>
+		<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#btn_search").click(function(){
+					$("#iframe").attr("src","/sys/search");
+					$("#search").val("");
+				})
+			})
+		</script>
+	</body>
+</html>

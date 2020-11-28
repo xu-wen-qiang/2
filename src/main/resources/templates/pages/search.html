@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>搜索详情</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../esources/css/bootstrap.min.css"/>
+	<body>
+		<script type="text/javascript">
+			function parseUrl(){
+			var url=location.href;
+			var i=url.indexOf('?');
+			if(i==-1)return;
+			var querystr=url.substr(i+1);
+			var arr1=querystr.split('&');
+			var arr2=newObject();
+			for(i in arr1){
+			var ta=arr1[i].split('=');
+			arr2[ta[0]]=ta[1];
+			}
+			return arr2;
+			}
+			varv=parseUrl();//解析所有参数
+			var search = v['search'];
+			if(null != search && search.length !=0){
+				confirm("以下是关于"+v['search']+"的结果")
+				document.getElementsByClassName("container").text(search)
+			}else{
+				document.getElementsByClassName("container").text(`
+				<div class="jumbotron jumbotron-fluid">
+				  <div class="container">
+				    <h1 class="display-4">没有找到合适的商品，换个关键词试试吧</h1>
+				    <p class="lead">404 not found</p>
+				  </div>
+				</div>
+				`)
+			}
+		</script>
+		<div class="container">
+			
+		</div>
+	</body>
+</html>

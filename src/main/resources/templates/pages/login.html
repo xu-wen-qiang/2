@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>注册</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css" />
+	<body>
+		<article class="jumbotron">
+			<div class="container-fluid">
+				<div class="col-12 col-md-4 offset-md-4 shadow-lg p-5 mb-5 bg-white rounded" align="center">
+					<div class="bg-danger mb-2 p-2" align="center">
+						<h4 class="">登录</h4>
+					</div>
+					<form action="" method="get" id="login_form" onsubmit="">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" >账号</span>
+							</div>
+							<input type="text" class="form-control" name="account" id="account" value="" placeholder="请输入账号" required="required" />
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" >密码</span>
+							</div>
+							<input type="password" class="form-control" name="password" id="password" value="" placeholder="请输入密码" required="required" />
+						</div>
+						<p>还没有账号？点击去<a href="/sys/register" target="_self">注册</a>吧</p>
+						<button type="button" id="btn_login" class="btn btn-danger w-100 mt-3">登录</button>
+					</form>
+				</div>
+			</div>
+		</article>
+		<script src="../resources/js/jquery3.4.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function() { //在HTML文档加载完成后执行
+				//GET方法
+				$("#btn_login").click(function(){ //HTML中id为get的HTML标签的点击动作
+				// function login() {
+					alert("执行了")
+					var account = $("#account").val();
+					var password = $("#password").val();
+					var u = "http://localhost:8080/user/" + account + "/" + password;
+					$.ajax({
+						url: u, //请求的URL地址
+						type: 'GET', //请求方法，GET、POST、PUT、DELETE在这里设置
+						timeout: 5000, //超时时间
+						dataType: 'json', //返回的数据格式：json/xml/html/script/jsonp/text
+						success: function(res, textStatus, jqXHR) { //成功的回调函数
+							if (res.code == 200) {
+								alert(res)
+								window.location.href = "main.html"
+							}
+						},
+						error: function(xhr, textStatus) { //失败的回调函数
+							// $("#result").html(textStatus)
+						}
+					})
+				// }
+				})
+				//POST方法
+				$("#post").click(function() {
+					$.ajax({
+						url: "http://localhost:8080/product/?id=1&name=测试POST&age=21",
+						type: 'POST', //请求方法，GET、POST、PUT、DELETE在这里设置
+						timeout: 5000, //超时时间
+						dataType: 'text', //返回的数据格式：json/xml/html/script/jsonp/text
+						success: function(data, textStatus, jqXHR) {
+							$("#result").html(data)
+						},
+						error: function(xhr, textStatus) {
+							$("#result").html(textStatus)
+						}
+					})
+				})
+				//PUT方法
+				$("#put").click(function() {
+					$.ajax({
+						url: 'http://localhost:8080/product/1/?name=测试PUT&age=22',
+						type: 'PUT', //请求方法，GET、POST、PUT、DELETE在这里设置
+						timeout: 5000, //超时时间
+						dataType: 'text', //返回的数据格式：json/xml/html/script/jsonp/text
+						success: function(data, textStatus, jqXHR) {
+							$("#result").html(data)
+						},
+						error: function(xhr, textStatus) {
+							$("#result").html(textStatus)
+						}
+					})
+				})
+				//DELETE方法
+				$("#delete").click(function() {
+					$.ajax({
+						url: 'http://localhost:8080/product/1',
+						type: 'DELETE', //请求方法，GET、POST、PUT、DELETE在这里设置
+						timeout: 5000, //超时时间
+						dataType: 'text', //返回的数据格式：json/xml/html/script/jsonp/text
+						success: function(data, textStatus, jqXHR) {
+							$("#result").html(data)
+						},
+						error: function(xhr, textStatus) {
+							$("#result").html(textStatus)
+						}
+					})
+				})
+
+			})
+		</script>
+	</body>
+</html>

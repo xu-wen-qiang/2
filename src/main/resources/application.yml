@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+# DataSource Config
+#配置数据源的属性
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/1?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+      username: root
+      password: root
+      max-active: 20
+      max-wait: 5000
+      initial-size: 1
+      filters: stat,log4j,wall
+      validationQuery: SELECT 1   #验证连接
+      enable: true
+      #监控配置
+      stat-view-servlet:
+        enabled: true
+        login-username: root
+        login-password: root
+        allow:
+        deny:
+        url-pattern: /druid/*
+      #thymeleaf的配置
+  #thymeleaf的配置
+    thymeleaf:
+      cache: false
+      enabled: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  #配置mybatisplus
+  mybatis-plus:
+    mapper-locations:
+      - classpath:mapper/*/*Mapper.xml
+    global-config:
+      db-config:
+        id-type: auto
+      banner: false
+    configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
